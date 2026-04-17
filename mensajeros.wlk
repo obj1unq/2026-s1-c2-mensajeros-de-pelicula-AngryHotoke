@@ -7,34 +7,18 @@ object paquete {
 	destino.mensajero(mensajero)
   }
   method paquetePuedeSerEntregadoEnDestino(){
-	self.validarPagoDelPaquete()
-	return destino.mensajeroHabilitadoParaEntrega()
-  }
-  method validarPagoDelPaquete() {
-	if (not self.estaPagoElPaquete()){
-		self.error("El paquete no esta pagado.")
-	}
+	  return self.estaPagoElPaquete() && destino.mensajeroHabilitadoParaEntrega()
   }
   method estaPagoElPaquete() {
-	return self.paquetePagado()
+	  return self.paquetePagado()
   }
 }
 object puenteDeBrooklyn {
   var property mensajero = null
 
   method mensajeroHabilitadoParaEntrega(){
-    self.validarEntrega()
 	return mensajero.peso() <= 1000
   }
-  method validarEntrega() {
-    if (not self.esPesoPermitido()){
-      self.error("Exceso de peso permitido.")
-    }
-  }
-  method esPesoPermitido() {
-    return mensajero.peso() > 1000
-  }
-  
 }
 object laMatrix {
   var property mensajero = null
