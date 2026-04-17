@@ -1,0 +1,39 @@
+import mensajeros.*
+
+describe "MENSAJEROSSS" {
+
+    method initialized()
+  test "El paquete de George que no está pago no puede ser llevado por Neo a la matrix." {
+    paquete.destino(laMatrix)
+    paquete.paquetePagado(false)
+    paquete.mensajero(neo)
+    paquete.asignarMensajeroADestino()
+    assert.equals(false, paquete.paquetePuedeSerEntregadoEnDestino())
+  }
+  test "El paquete de George que sí está pago puede ser llevado por Jean a la matrix" {
+    paquete.destino(laMatrix)
+    paquete.paquetePagado(true)
+    paquete.mensajero(jeanGray)
+    paquete.asignarMensajeroADestino()
+    assert.equals(true, paquete.paquetePuedeSerEntregadoEnDestino())
+  }
+  test "El paquete de George que sí está pago no puede ser llevado por Sara a Brooklyn si es que utiliza un camión con un acoplado ." {
+    paquete.destino(puenteDeBrooklyn)
+    paquete.paquetePagado(true)
+    paquete.mensajero(saraConnor)
+    paquete.asignarMensajeroADestino()
+    saraConnor.peso(70)
+    saraConnor.vehiculo(camion)
+    camion.cantidadAcoplados(1)
+    assert.equals(false, paquete.paquetePuedeSerEntregadoEnDestino())
+  }
+    test "sara con moto" {
+      paquete.destino(puenteDeBrooklyn)
+    paquete.paquetePagado(true)
+    paquete.mensajero(saraConnor)
+    paquete.asignarMensajeroADestino()
+    saraConnor.peso(70)
+    saraConnor.vehiculo(moto)
+    assert.equals(true, paquete.paquetePuedeSerEntregadoEnDestino())
+    }
+}
